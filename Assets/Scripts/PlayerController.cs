@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour {
     public float speed;
     public float jump;
 
+    public LevelController theLevelManager;
+
 
     public float jumpTime;
     private float jumpTimeCounter;
@@ -72,5 +74,19 @@ public class PlayerController : MonoBehaviour {
             //counter resets to zero
             jumpTimeCounter = 0;
         }
+        
 	}
+    /// <summary>
+    /// Is called when the player hits a boxcollider with a certain tag
+    /// </summary>
+    /// <param name="other"></param>
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        //If the tag of the gameobject is "death"
+        if (other.gameObject.tag == "death")
+        {   
+            //Takes the player to the game over screen
+            theLevelManager.GameOver();
+        }
+    }
 }

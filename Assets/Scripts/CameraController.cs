@@ -4,8 +4,10 @@ using UnityEngine;
 
 //MonoBehaviour is the base class from which every Unity script derives.
 public class CameraController : MonoBehaviour {
-
+    
+    //the player
     public PlayerController zombie;
+    //where the player is
     private Vector3 positionOfZombie;
     private float distanceToMove;
 
