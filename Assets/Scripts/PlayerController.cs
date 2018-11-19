@@ -5,8 +5,18 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     //making new float variables for speed and jump
+    //and for the speed increase system (milestone and multiplier)
     public float speed;
+
+    public float speedMultiplier;
+
+    //speedIncreaseMilestone is the distance the player reaches before speeding up
+    public float speedIncreaseMilestone;
+    //when reaching the milestone the speedMilestoneCount is added
+    private float speedMilestoneCount;
+
     public float jump;
+
 
     public LevelController theLevelManager;
 
@@ -34,6 +44,9 @@ public class PlayerController : MonoBehaviour {
         myRigidBody = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
         jumpTimeCounter = jumpTime;
+
+        //setting milestone count as the increasing milestone
+        speedMilestoneCount = speedIncreaseMilestone;
 	}
 
 
@@ -43,6 +56,21 @@ public class PlayerController : MonoBehaviour {
     void Update () {
 
         onTheGround = Physics2D.IsTouchingLayers(myCollider, groundLayer);
+
+
+        //Here the speed is increasing if the player has reached the milestone where the speed should increase
+        if (transform.position.x > speedIncreaseMilestone)
+        {
+            //the speed increasing distance is duplicating
+            speedMilestoneCount += speedIncreaseMilestone;
+
+            // makes the speed increasing distance go up small amount so that the speed increases evenly
+            speedIncreaseMilestone = speedIncreaseMilestone * speedMultiplier;
+
+            //here the speed is increased
+            speed = speed * speedMultiplier;
+        }
+
 
         //Here we make the vector for speed
         myRigidBody.velocity = new Vector2(speed, myRigidBody.velocity.y);
