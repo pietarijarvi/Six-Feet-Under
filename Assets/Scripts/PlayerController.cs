@@ -12,8 +12,11 @@ public class PlayerController : MonoBehaviour {
 
     //speedIncreaseMilestone is the distance the player reaches before speeding up
     public float speedIncreaseMilestone;
+
     //when reaching the milestone the speedMilestoneCount is added
     private float speedMilestoneCount;
+
+    public float maxSpeed = 35;
 
     public float jump;
 
@@ -57,6 +60,10 @@ public class PlayerController : MonoBehaviour {
 
         onTheGround = Physics2D.IsTouchingLayers(myCollider, groundLayer);
 
+        if (speed > maxSpeed)
+        {
+            speed = maxSpeed;
+        }
 
         //Here the speed is increasing if the player has reached the milestone where the speed should increase
         if (transform.position.x > speedIncreaseMilestone)
