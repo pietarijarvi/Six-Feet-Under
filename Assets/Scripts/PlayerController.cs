@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour {
 
         onTheGround = Physics2D.IsTouchingLayers(myCollider, groundLayer);
 
+        // Here the maximum speed is set as player's speed if the speed goes over the maximum
         if (speed > maxSpeed)
         {
             speed = maxSpeed;
