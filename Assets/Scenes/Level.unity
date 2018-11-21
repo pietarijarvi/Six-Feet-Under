@@ -984,9 +984,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2233d8da5bb58274480a6954a26c0acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  speedMultiplier: 1.02
-  speedIncreaseMilestone: 50
+  speed: 8
+  speedMultiplier: 1.2
+  speedIncreaseMilestone: 100
   maxSpeed: 35
   jump: 10
   theLevelManager: {fileID: 114908538333752646, guid: bfecd0dc3ef20784f96c6a9c01d19241,
