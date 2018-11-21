@@ -7,12 +7,16 @@ public class ScoreBoard : MonoBehaviour
     public Text scoreText;
     public Text highScoreText;
 
-    public float scoreCount;
+    public static float scoreCount;
     public float highScoreCount;
 
     public float pointsPerSecond;
 
     public bool scoreIncreasing;
+
+    public Text enterName;
+
+
 
 
     void Start()
@@ -44,6 +48,7 @@ public class ScoreBoard : MonoBehaviour
         highScoreText.text = "High Score: " + Mathf.Round(highScoreCount);
 
     }
+
 }
 
 
