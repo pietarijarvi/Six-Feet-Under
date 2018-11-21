@@ -53,6 +53,11 @@ public class ScoreBoard : MonoBehaviour
         highScoreText.text = "High Score: " + Mathf.Round(highScoreCount);
 
     }
+    // adding the pick up points to the score count
+    public void AddPoints(int points)
+    {
+        scoreCount += points;
+    }
 
 }
 
