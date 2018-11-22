@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour {
     //speedIncreaseMilestone is the distance the player reaches before speeding up
     public float speedIncreaseMilestone;
 
-    //when reaching the milestone the speedMilestoneCount is added
     private float speedMilestoneCount;
 
     public float maxSpeed = 35;
