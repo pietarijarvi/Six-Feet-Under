@@ -71,8 +71,8 @@ public class PlayerController : MonoBehaviour {
             //the speed increasing distance is duplicating
             speedMilestoneCount += speedIncreaseMilestone;
 
-            // makes the speed increasing distance go up small amount so that the speed increases evenly
-            speedIncreaseMilestone = speedIncreaseMilestone * speedMultiplier;
+            // makes the speed increasing distance go up certain amount so that the speed increases evenly
+            speedIncreaseMilestone = speedIncreaseMilestone * (2 * speedMultiplier);
 
             //here the speed is increased
             speed = speed * speedMultiplier;
