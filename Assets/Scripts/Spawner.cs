@@ -6,8 +6,8 @@ public class Spawner : MonoBehaviour {
 
 	public GameObject[] obj;
 	void Start () {
-//		Spawn();
-		InvokeRepeating ("Spawn", 2f, 1f);
+		Spawn();
+		InvokeRepeating ("Spawn", 2f, 1.5f);
 	}
 	
 	void Spawn()

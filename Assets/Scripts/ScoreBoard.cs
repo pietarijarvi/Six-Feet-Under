@@ -5,23 +5,23 @@ public class ScoreBoard : MonoBehaviour
 {
     // making the flieds for the score system
 
-    public Text scoreText;
-    public Text highScoreText;
+    private Text scoreText;
+    private Text highScoreText;
 
-    public static float scoreCount;
-    public float highScoreCount;
+    private static float scoreCount;
+    private float highScoreCount;
 
     public float pointsPerSecond;
 
     public bool scoreIncreasing;
-
-    public Text enterName;
-
-
-
+    
+    public static float GetScoreCount(){return scoreCount;}
+    public static void SetScoreCount(float newScoreCount){scoreCount = newScoreCount;}
 
     void Start()
     {
+        scoreText = GameObject.Find("TextScore").GetComponent<Text>();
+        highScoreText = GameObject.Find("TextHighScore").GetComponent<Text>();
         // takes the high score from the previous achievement and saves it to the high score
         if (PlayerPrefs.HasKey("HighScore"))
         {

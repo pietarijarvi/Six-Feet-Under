@@ -13,13 +13,14 @@ public class LevelController : MonoBehaviour {
     {
         //Loads the scene called "Level"
         SceneManager.LoadScene("Level");
-        ScoreBoard.scoreCount = 0;
+        //Sets score to 0 when level is started
+        ScoreBoard.SetScoreCount(0);
     }
     /// <summary>
     /// Takes the player to the Game Over screen after they hit an obstacle or fall off the screen
     /// </summary>
     public void GameOver()
-    {
+    { 
         //Loads the scene called "GameOver"
         SceneManager.LoadScene("GameOver");
     }
