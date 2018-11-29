@@ -476,12 +476,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b3b1852c3c427d4c8a5829fb6f7a8c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 660070293}
-  highScoreText: {fileID: 1577851744}
-  highScoreCount: 0
+  shouldDouble: 0
   pointsPerSecond: 5
   scoreIncreasing: 1
-  enterName: {fileID: 0}
 --- !u!1 &947190082
 GameObject:
   m_ObjectHideFlags: 0
