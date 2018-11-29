@@ -8,14 +8,18 @@ public class ScoreBoard : MonoBehaviour
     private Text scoreText;
     private Text highScoreText;
 
+    public bool shouldDouble;
+
     private static float scoreCount;
     private float highScoreCount;
 
     public float pointsPerSecond;
 
-    public bool scoreIncreasing;
-    
+    [SerializeField]
+    private bool scoreIncreasing;
+
     public static float GetScoreCount(){return scoreCount;}
+
     public static void SetScoreCount(float newScoreCount){scoreCount = newScoreCount;}
 
     void Start()
@@ -56,6 +60,12 @@ public class ScoreBoard : MonoBehaviour
     // adding the pick up points to the score count
     public void AddPoints(int points)
     {
+
+        if(shouldDouble)
+        {
+            points = points * 2;
+        }
+
         scoreCount += points;
     }
 

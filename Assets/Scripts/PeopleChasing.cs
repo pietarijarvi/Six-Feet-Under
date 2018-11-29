@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PeopleChasing : MonoBehaviour {
 
-    public float speed;
+    // making a field for enemy's speed 
+    [SerializeField]
+    private float speed;
 
+    // making a field for Player that the enemy is following
     private Transform target;
 
 	void Start () {

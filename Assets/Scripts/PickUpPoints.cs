@@ -5,7 +5,8 @@ using UnityEngine;
 public class PickUpPoints : MonoBehaviour {
 
     // making a field for the pick up points
-    public int scorePoints;
+    [SerializeField]
+    private int scorePoints;
 
     // making a ScoreBoard typed field
     private ScoreBoard scoreBoard;
