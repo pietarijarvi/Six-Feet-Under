@@ -30,8 +30,30 @@ public class LeaderBoardController : MonoBehaviour
         nameText = GameObject.Find("Name").GetComponent<Text>();
         //conn variable is the link to the database inside the asset
         conn = "URI=file:" + Application.dataPath + "/PeliProjektiDB.db";
+
+        CreateTable();
         //Getting scores from database
         GetScores();
+    }
+
+    public void CreateTable()
+    {
+        using (IDbConnection dbconn = new SqliteConnection(conn))
+        {
+            dbconn.Open();
+            using (IDbCommand dbCmd = dbconn.CreateCommand())
+            {
+                dbCmd.CommandType = CommandType.Text;
+                dbCmd.CommandText = "CREATE TABLE IF NOT EXISTS 'HighScores' ( " +
+                                  "  'PlayerID' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " +
+                                  "  'Name' TEXT NOT NULL, " +
+                                  "  'Score' REAL NOT NULL" +
+                                  ");";
+
+                var result = dbCmd.ExecuteNonQuery();
+                Debug.Log("create schema: " + result);
+            }
+        }
     }
 
     public void AddScore()
@@ -94,6 +116,7 @@ public class LeaderBoardController : MonoBehaviour
                         string name = reader.GetString(1);
                         float score = reader.GetFloat(2);
                         
+                        //setting how the data should be displayed in the text objects
                         nameText.text += name.ToString() + "\n";
                         scoreText.text += score.ToString() + "\n";
                         rankText.text += rank.ToString() + "\n";
