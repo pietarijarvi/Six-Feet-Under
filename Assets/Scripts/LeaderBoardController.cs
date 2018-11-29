@@ -94,6 +94,7 @@ public class LeaderBoardController : MonoBehaviour
                         string name = reader.GetString(1);
                         float score = reader.GetFloat(2);
                         
+                        //setting how the data should be displayed in the text objects
                         nameText.text += name.ToString() + "\n";
                         scoreText.text += score.ToString() + "\n";
                         rankText.text += rank.ToString() + "\n";
