@@ -8,7 +8,7 @@ public class Spawner : MonoBehaviour {
 	[SerializeField] private float minSpawn;
 	[SerializeField] private GameObject[] obj;
 	void Start () {
-		Spawn();
+//		Spawn();
 		InvokeRepeating ("Spawn", maxSpawn, minSpawn);
 	}
 	
