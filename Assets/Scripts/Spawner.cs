@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour {
 
-	public GameObject[] obj;
+	[SerializeField] private float maxSpawn;
+	[SerializeField] private float minSpawn;
+	[SerializeField] private GameObject[] obj;
 	void Start () {
 		Spawn();
-		InvokeRepeating ("Spawn", 2f, 1.5f);
+		InvokeRepeating ("Spawn", maxSpawn, minSpawn);
 	}
 	
 	void Spawn()
