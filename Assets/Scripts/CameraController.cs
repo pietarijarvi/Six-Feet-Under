@@ -1,33 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-//MonoBehaviour is the base class from which every Unity script derives.
 public class CameraController : MonoBehaviour {
     
-    //the player
-    public PlayerController zombie;
-    //where the player is
-    private Vector3 positionOfZombie;
-    private float distanceToMove;
+    //Setting transforms for the camera movement and the player character
+    [SerializeField]
+    private Transform cameraMovement;
+    [SerializeField]
+    private Transform zombie;
 
-	// Use this for initialization
-	void Start () {
-
-        //finds player(zombie) from the game
-        zombie = FindObjectOfType<PlayerController>();
-        
-        //where the zombie is in the game
-        positionOfZombie = zombie.transform.position;
-    }
-
-    // Update is called once per frame
-    void Update () {
-
-        distanceToMove = zombie.transform.position.x - positionOfZombie.x;
-
-        transform.position = new Vector3(transform.position.x + distanceToMove, transform.position.y, transform.position.z);
-
-        positionOfZombie = zombie.transform.position;
+    /// <summary>
+    /// Here we set how the camera follows the player
+    /// </summary>
+    void LateUpdate ()
+    {
+        /* Vector3 consists of three axis: x,y and z. We set that the cameras location is zombie's position in the x axis + a float value.
+         * This makes it so that the player character is more to the left of the screen instead of the middle. Then we set the y and z positions to 0
+         * so that the camera will not follow the player once the character jumps or falls.*/
+        cameraMovement.position = new Vector3(zombie.position.x +10f, 0, 0);
 	}
 }
