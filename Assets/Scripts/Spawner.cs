@@ -7,14 +7,17 @@ public class Spawner : MonoBehaviour {
 	[SerializeField] private float maxSpawn;
 	[SerializeField] private float minSpawn;
 	[SerializeField] private GameObject[] obj;
+	private Random randomSecs = new Random();
 	void Start () {
 //		Spawn();
-		InvokeRepeating ("Spawn", maxSpawn, minSpawn);
+		StartCoroutine(Spawn());
 	}
 	
-	void Spawn()
+	IEnumerator Spawn()
 	{
-	//	Vector3 viewpos = cam.WorldToViewportPoint(new Vector3());
-		Instantiate (obj[Random.Range (0, obj.GetLength(0))], gameObject.transform.position, Quaternion.identity);
+		while (true) {
+			yield return new WaitForSeconds(Random.Range(minSpawn,maxSpawn));
+			Instantiate (obj[Random.Range (0, obj.GetLength(0))], gameObject.transform.position, Quaternion.identity);
+		}
 	}
 }

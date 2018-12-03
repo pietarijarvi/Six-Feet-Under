@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour {
     /// <summary>
     /// Setting new vectors for player speed and jump. Setting when the player can double jump.
     /// </summary>
-    void Update () {
+    void FixedUpdate () {
 
         onTheGround = Physics2D.IsTouchingLayers(myCollider, groundLayer);
 
@@ -95,6 +95,7 @@ public class PlayerController : MonoBehaviour {
 
         
 	}
+    
     /// <summary>
     /// Is called when the player hits a boxcollider with a certain tag
     /// </summary>

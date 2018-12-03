@@ -3,10 +3,8 @@
 public class CameraController : MonoBehaviour {
     
     //Setting transforms for the camera movement and the player character
-    [SerializeField]
-    private Transform cameraMovement;
-    [SerializeField]
-    private Transform zombie;
+    [SerializeField] private Transform cameraMovement;
+    [SerializeField] private Transform zombie;
 
     /// <summary>
     /// Here we set how the camera follows the player
