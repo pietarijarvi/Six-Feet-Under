@@ -15,23 +15,21 @@ public class PlayerController : MonoBehaviour {
 
     private float speedMilestoneCount;
 
+    //setting max speed 
     public float maxSpeed = 35;
 
     public float jump;
 
-
     public LevelController theLevelManager;
-
-
-    public float jumpTime;
-    private float jumpTimeCounter;
-
 
     //making a private variable for 2D physics body of the player
     private Rigidbody2D myRigidBody;
     
     //bool for when the character is on the ground layer
     public bool onTheGround;
+
+    //boolean for the ability to double jump
+    private bool doubleJump;
 
     //making a new layermask for ground
     public LayerMask groundLayer;
@@ -45,7 +43,6 @@ public class PlayerController : MonoBehaviour {
         //Finding the rigidbody of the player
         myRigidBody = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
-        jumpTimeCounter = jumpTime;
 
         //setting milestone count as the increasing milestone
         speedMilestoneCount = speedIncreaseMilestone;
@@ -53,7 +50,7 @@ public class PlayerController : MonoBehaviour {
 
 
     /// <summary>
-    /// Setting new vectors for player speed and jump, update is called once per frame
+    /// Setting new vectors for player speed and jump. Setting when the player can double jump.
     /// </summary>
     void Update () {
 
@@ -89,26 +86,13 @@ public class PlayerController : MonoBehaviour {
             {
                 //Here we make the vector for jump
                 myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jump);
-                jumpTimeCounter = jumpTime;
+                doubleJump = true;
+            } else if (doubleJump){
+                doubleJump = false;
+                myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jump);
             }
         }
 
-        if (Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0))
-        {   
-            //if counter is over 0
-            if (jumpTimeCounter > 0)
-            {
-                myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jump);
-                jumpTimeCounter -= Time.deltaTime;
-            }
-        }
-        
-        //if key isn't pressed
-        if (Input.GetKeyUp(KeyCode.Space) || Input.GetMouseButtonUp(0))
-        {   
-            //counter resets to zero
-            jumpTimeCounter = 0;
-        }
         
 	}
     /// <summary>

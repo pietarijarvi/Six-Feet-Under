@@ -69,7 +69,7 @@ public class LeaderBoardController : MonoBehaviour
             //using connection
             using (IDbCommand dbCmd = dbconn.CreateCommand())
             {   //Defining how data is inserted with String.Format
-                string sqlQuery = String.Format("INSERT INTO HighScores(Name,Score) VALUES(\"{0}\",\"{1}\")", name, score);
+                string sqlQuery = String.Format("INSERT INTO HighScores(Name,Score) VALUES(\"{0}\",\"{1}\")", name, Mathf.Round(score));
                 
 
                 dbCmd.CommandText = sqlQuery;
