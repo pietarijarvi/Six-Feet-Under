@@ -6,6 +6,12 @@ public class GameController : MonoBehaviour
 {
     //making a boolean for game being paused
     private bool gamePaused;
+    private Material material;
+    private Vector2 offset;
+
+    //Float values for x and y velocity which will be used in quad
+    [SerializeField]
+    private float xVelocity, yVelocity;
 
     // Use this for initialization
     void Start()
@@ -36,5 +42,18 @@ public class GameController : MonoBehaviour
                 gamePaused = false;
             }
         }
+
+        //setting a vector for x and y velocities so the background can be looped
+        offset = new Vector2(xVelocity, yVelocity);
+
+        material.mainTextureOffset += offset * Time.deltaTime;
+    }
+
+    /// <summary>
+    /// Awake is used to initialize any variables or game state before the game starts
+    /// </summary>
+    private void Awake()
+    {
+        material = GetComponent<Renderer>().material;
     }
 }
