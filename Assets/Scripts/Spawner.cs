@@ -7,9 +7,7 @@ public class Spawner : MonoBehaviour {
 	[SerializeField] private float maxSpawn;
 	[SerializeField] private float minSpawn;
 	[SerializeField] private GameObject[] obj;
-	private Random randomSecs = new Random();
 	void Start () {
-//		Spawn();
 		StartCoroutine(Spawn());
 	}
 	
