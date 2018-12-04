@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     //making new float variables for speed and jump
     //and for the speed increase system (milestone and multiplier)
@@ -24,43 +25,50 @@ public class PlayerController : MonoBehaviour {
 
     //making a private variable for 2D physics body of the player
     private Rigidbody2D myRigidBody;
-    
+
     //bool for when the character is on the ground layer
     public bool onTheGround;
+
+    [SerializeField]
+    private Transform groundCheck;
+    [SerializeField]
+    private float groundCheckRadius;
 
     //boolean for the ability to double jump
     private bool doubleJump;
 
     //making a new layermask for ground
-    public LayerMask groundLayer;
+    [SerializeField]
+    private LayerMask groundLayer;
 
-    private Collider2D myCollider;
-
-	/// <summary>
+    /// <summary>
     /// What happens when the game starts
     /// </summary>
-	void Start () {
+    void Start()
+    {
         //Finding the rigidbody of the player
         myRigidBody = GetComponent<Rigidbody2D>();
-        myCollider = GetComponent<Collider2D>();
 
         //setting milestone count as the increasing milestone
         speedMilestoneCount = speedIncreaseMilestone;
-	}
+    }
 
 
     /// <summary>
     /// Setting new vectors for player speed and jump. Setting when the player can double jump.
     /// </summary>
-    void FixedUpdate () {
+    void FixedUpdate()
+    {
 
-        onTheGround = Physics2D.IsTouchingLayers(myCollider, groundLayer);
+        //onTheGround = Physics2D.IsTouchingLayers(myCollider, groundLayer);
 
         // Here the maximum speed is set as player's speed if the speed goes over the maximum
         if (speed > maxSpeed)
         {
             speed = maxSpeed;
         }
+
+        onTheGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
         //Here the speed is increasing if the player has reached the milestone where the speed should increase
         if (transform.position.x > speedIncreaseMilestone)
@@ -80,22 +88,29 @@ public class PlayerController : MonoBehaviour {
         myRigidBody.velocity = new Vector2(speed, myRigidBody.velocity.y);
 
         //If spacebar or mousebutton 0 (left click) is down, character jumps. Also works with mobile by tapping the screen.
-        if (Input.GetKeyDown(KeyCode.Space)||Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             if (onTheGround)
             {
-                //Here we make the vector for jump
-                myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jump);
+                Jump();
                 doubleJump = true;
-            } else if (doubleJump){
-                doubleJump = false;
-                myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jump);
+            }
+            else
+            {
+                if (doubleJump)
+                {
+                    Jump();
+                    doubleJump = false;
+                }
             }
         }
+    }
 
-        
-	}
-    
+    void Jump()
+    {
+        myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jump);
+    }
+
     /// <summary>
     /// Is called when the player hits a boxcollider with a certain tag
     /// </summary>
@@ -104,7 +119,7 @@ public class PlayerController : MonoBehaviour {
     {
         //If the tag of the gameobject is "death"
         if (other.gameObject.tag == "death")
-        {   
+        {
             //Takes the player to the game over screen
             theLevelManager.GameOver();
         }
