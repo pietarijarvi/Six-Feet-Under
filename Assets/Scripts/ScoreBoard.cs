@@ -3,25 +3,29 @@ using UnityEngine.UI;
 
 public class ScoreBoard : MonoBehaviour
 {
-    // making the flieds for the score system
+    // making the fields for the score system
 
     private Text scoreText;
     private Text highScoreText;
 
-    public bool shouldDouble;
+    private bool shouldDouble;
 
     private static float scoreCount;
     private float highScoreCount;
-
+    
     public float pointsPerSecond;
 
     [SerializeField]
     private bool scoreIncreasing;
 
+
     public static float GetScoreCount(){return scoreCount;}
 
     public static void SetScoreCount(float newScoreCount){scoreCount = newScoreCount;}
 
+    /// <summary>
+    /// What is set when starting the game
+    /// </summary>
     void Start()
     {
         scoreText = GameObject.Find("TextScore").GetComponent<Text>();
@@ -34,7 +38,9 @@ public class ScoreBoard : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Increasing score with time
+    /// </summary>
     void Update()
     {
         // this increases the score value
@@ -42,6 +48,7 @@ public class ScoreBoard : MonoBehaviour
         {
             scoreCount += pointsPerSecond * Time.deltaTime;
         }
+        
 
         // when the player reaches the highscore this begins to count the score also to the high score
         if (scoreCount > highScoreCount)
@@ -57,7 +64,10 @@ public class ScoreBoard : MonoBehaviour
         highScoreText.text = "High Score: " + Mathf.Round(highScoreCount);
 
     }
-    // adding the pick up points to the score count
+    /// <summary>
+    /// adding the pick up points to the score count
+    /// </summary>
+    /// <param name="points"></param>
     public void AddPoints(int points)
     {
 
@@ -68,7 +78,6 @@ public class ScoreBoard : MonoBehaviour
 
         scoreCount += points;
     }
-
 }
 
 

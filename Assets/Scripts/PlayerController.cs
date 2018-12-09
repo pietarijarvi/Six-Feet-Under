@@ -5,29 +5,36 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    //used gamesplusjames youtube tutorial for reference on some parts
+
     //making new float variables for speed and jump
     //and for the speed increase system (milestone and multiplier)
-    public float speed;
-
-    public float speedMultiplier;
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private float speedMultiplier;
 
     //speedIncreaseMilestone is the distance the player reaches before speeding up
-    public float speedIncreaseMilestone;
+    [SerializeField]
+    private float speedIncreaseMilestone;
 
     private float speedMilestoneCount;
 
     //setting max speed 
-    public float maxSpeed = 35;
+    [SerializeField]
+    private float maxSpeed = 35;
 
-    public float jump;
+    [SerializeField]
+    private float jump;
 
-    public LevelController theLevelManager;
+    [SerializeField]
+    private LevelController theLevelManager;
 
     //making a private variable for 2D physics body of the player
     private Rigidbody2D myRigidBody;
 
     //bool for when the character is on the ground layer
-    public bool onTheGround;
+    private bool onTheGround;
 
     [SerializeField]
     private Transform groundCheck;
@@ -57,10 +64,8 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Setting new vectors for player speed and jump. Setting when the player can double jump.
     /// </summary>
-    void FixedUpdate()
-    {
-
-        //onTheGround = Physics2D.IsTouchingLayers(myCollider, groundLayer);
+    void Update()
+    { 
 
         // Here the maximum speed is set as player's speed if the speed goes over the maximum
         if (speed > maxSpeed)
@@ -104,9 +109,16 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        //If you press the down arrow while in the air
+        if (Input.GetKey(KeyCode.DownArrow)&&!onTheGround)
+        {   //Increase gravity of player character
+            GetComponent<Rigidbody2D>().AddForce(Physics2D.gravity*7f);
+        }
     }
-
-    void Jump()
+    /// <summary>
+    /// Method for jumping
+    /// </summary>
+    private void Jump()
     {
         myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jump);
     }

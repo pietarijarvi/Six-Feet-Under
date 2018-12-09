@@ -6,6 +6,8 @@ using System.Data;
 using Mono.Data.SqliteClient;
 using UnityEngine.UI;
 
+//Used ornithopthergames.com and teacher's materials for reference
+
 public class LeaderBoardController : MonoBehaviour
 {
     //connection variable used to connect to the database
@@ -35,27 +37,29 @@ public class LeaderBoardController : MonoBehaviour
         //Getting scores from database
         GetScores();
     }
-
+    /// <summary>
+    /// Creates a table if it doesn't already exist
+    /// </summary>
     public void CreateTable()
     {
         using (IDbConnection dbconn = new SqliteConnection(conn))
         {
             dbconn.Open();
             using (IDbCommand dbCmd = dbconn.CreateCommand())
-            {
+            {   //Command to create a table
                 dbCmd.CommandType = CommandType.Text;
                 dbCmd.CommandText = "CREATE TABLE IF NOT EXISTS 'HighScores' ( " +
                                   "  'PlayerID' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " +
                                   "  'Name' TEXT NOT NULL, " +
                                   "  'Score' REAL NOT NULL" +
                                   ");";
-
-                var result = dbCmd.ExecuteNonQuery();
-                Debug.Log("create schema: " + result);
             }
         }
     }
 
+    /// <summary>
+    /// Adds a score to the database and displays it
+    /// </summary>
     public void AddScore()
     {
         //score is got from scoreboard class
@@ -70,7 +74,6 @@ public class LeaderBoardController : MonoBehaviour
             using (IDbCommand dbCmd = dbconn.CreateCommand())
             {   //Defining how data is inserted with String.Format
                 string sqlQuery = String.Format("INSERT INTO HighScores(Name,Score) VALUES(\"{0}\",\"{1}\")", name, Mathf.Round(score));
-                
 
                 dbCmd.CommandText = sqlQuery;
                 //Executing the command 
@@ -83,6 +86,7 @@ public class LeaderBoardController : MonoBehaviour
             
         }
     }
+
 
     /// <summary>
     /// Gets data from the database
