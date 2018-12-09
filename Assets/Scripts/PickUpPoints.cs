@@ -11,14 +11,20 @@ public class PickUpPoints : MonoBehaviour {
     // making a ScoreBoard typed field
     private ScoreBoard scoreBoard;
 
+    /// <summary>
+    /// Finding scoreboard object
+    /// </summary>
 	void Start () {
 
         // the ScoreBoard that is used in the game
         scoreBoard = FindObjectOfType<ScoreBoard>();
 	}
-	
 
-    // here the point is being picked up when a player with a collider hits the pick up point's collider
+
+    /// <summary>
+    /// here the point is being picked up when a player with a collider hits the pick up point's collider
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
 

@@ -31,5 +31,22 @@ public class LevelController : MonoBehaviour {
     {
         //Closes the application
         Application.Quit();
+
+    }
+
+    /// <summary>
+    /// Loads main menu
+    /// </summary>
+    public void Menu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    /// <summary>
+    /// Opens the info scene
+    /// </summary>
+    public void Info()
+    {
+        SceneManager.LoadScene("InfoScene");
     }
 }

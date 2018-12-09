@@ -8,38 +8,56 @@ public class GameController : MonoBehaviour
     private bool gamePaused;
     [SerializeField]
     private float speed = 0.5f;
+    [SerializeField]
+    private GameObject pauseCanvas;
 
-    // Use this for initialization
+    /// <summary>
+    /// What is set when game is started
+    /// </summary>
     void Start()
     {
         // game isn't paused at the start
         gamePaused = false;
+        pauseCanvas = GameObject.Find("Pause");
     }
 
 
-    // Update is called once per frame
+    /// <summary>
+    /// Pause function for the game
+    /// </summary>
     void Update()
     {
         //If escape key is pressed
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            //if game isn't paused
-            if (gamePaused == false)
-            {
-                //pauses the game and makes boolean true
-                Time.timeScale = 0;
-                gamePaused = true;
-            }
-            //if boolean true (game is paused) and escape key is pressed
-            else if (gamePaused == true)
-            {
-                //Game unpauses and boolean set back to false
-                Time.timeScale = 1;
-                gamePaused = false;
-            }
+            gamePaused = !gamePaused;
         }
-
+            //if game is paused
+        if (gamePaused)
+        {
+            ActivateCanvas();
+        }          
+        else
+        {
+            DisableCanvas();       
+        }
+        
+        //Finding the background renderer from quad
         Vector2 offset = new Vector2(Time.time * speed, 0);
         GameObject.Find("Quad").GetComponent<Renderer>().material.mainTextureOffset = offset;
+    }
+
+    void ActivateCanvas()
+    {
+        pauseCanvas.SetActive(true);
+        Time.timeScale = 0;
+        gamePaused = true;
+    }
+
+    void DisableCanvas()
+    {
+        pauseCanvas.SetActive(false);
+        Time.timeScale = 1;
+        gamePaused = false;
     }
 }
