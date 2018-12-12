@@ -46,26 +46,14 @@ public class GameController : MonoBehaviour
         Vector2 offset = new Vector2(Time.time * speed, 0);
         GameObject.Find("Quad").GetComponent<Renderer>().material.mainTextureOffset = offset;
     }
-<<<<<<< HEAD
 
-=======
-    /// <summary>
-    /// Activates the canvas
-    /// </summary>
->>>>>>> 97df28e91570cb1748e23c682d32212e0f157d57
     void ActivateCanvas()
     {
         pauseCanvas.SetActive(true);
         Time.timeScale = 0;
         gamePaused = true;
     }
-<<<<<<< HEAD
 
-=======
-    /// <summary>
-    /// Disables the canvas
-    /// </summary>
->>>>>>> 97df28e91570cb1748e23c682d32212e0f157d57
     void DisableCanvas()
     {
         pauseCanvas.SetActive(false);
