@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+public class GameController
 {
     //making a boolean for game being paused
     private bool gamePaused;
@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
         gamePaused = false;
         pauseCanvas = GameObject.Find("Pause");
     }
-
+    //
 
     /// <summary>
     /// Pause function for the game
