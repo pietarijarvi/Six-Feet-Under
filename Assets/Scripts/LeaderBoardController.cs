@@ -53,6 +53,8 @@ public class LeaderBoardController : MonoBehaviour
                                   "  'Name' TEXT NOT NULL, " +
                                   "  'Score' REAL NOT NULL" +
                                   ");";
+                dbCmd.ExecuteScalar();
+                dbconn.Close();
             }
         }
     }
