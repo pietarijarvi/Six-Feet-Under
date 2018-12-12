@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class CameraController : MonoBehaviour {
+public class CameraController {
     
     //Setting transforms for the camera movement and the player character
     [SerializeField] private Transform cameraMovement;
